@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClipForge AI</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f4f6ff;font-family:Arial,sans-serif;padding:20px}
+main{max-width:760px;margin:25px auto}.brand{font-weight:800;font-size:22px;color:#a9b5ff}
+.hero{text-align:center;padding:35px 5px}.hero h1{font-size:clamp(32px,8vw,52px);margin:15px 0}.grad{background:linear-gradient(90deg,#8d9aff,#55e4d6);color:transparent;background-clip:text}
+p{color:#aab5cc;line-height:1.6}.card{background:#151e32;border:1px solid #2b3854;border-radius:18px;padding:22px;margin:15px 0}
+.modes{display:flex;gap:10px}.modes button{flex:1;padding:13px;background:#0d1527;color:white;border:1px solid #475477;border-radius:12px}
+.modes button.active{border-color:#8b96ff;background:#29315a}
+label.upload{display:block;text-align:center;padding:35px 12px;border:2px dashed #64739b;border-radius:15px;cursor:pointer;margin-top:18px}
+input[type=file]{display:none}select{width:100%;padding:12px;background:#0c1528;color:white;border:1px solid #3b4969;border-radius:10px;margin:8px 0 15px}
+.primary{width:100%;padding:15px;background:linear-gradient(90deg,#6577ff,#9c5dff);border:0;border-radius:12px;color:white;font-weight:bold;font-size:16px}
+small{color:#9eabc4}.status{display:none;padding:12px;background:#3a2d17;border-radius:10px;margin-top:12px;color:#ffdf9d}
+</style></head>
+<body><main>
+<div class="brand">✂ ClipForge AI</div>
+<section class="hero"><small>AI VIDEO TO SHORTS</small><h1>One long video.<br><span class="grad">10 amazing shorts.</span></h1><p>Upload your video and prepare engaging vertical clips with captions.</p></section>
+<div class="card"><h2>Choose workspace</h2><p>Start privately, or prepare the platform for other users.</p>
+<div class="modes"><button id="personal" class="active" onclick="mode('personal')">👤 Personal</button><button id="public" onclick="mode('public')">🌐 Public users</button></div>
+<label class="upload" for="video">⬆️<h3>Choose a long video</h3><small>MP4, MOV or WEBM</small><p id="fileName">No video selected</p></label><input id="video" type="file" accept="video/*" onchange="pick(this)">
+<h3>Shorts settings</h3><small>Number of clips</small><select><option>10 shorts</option><option>5 shorts</option><option>15 shorts</option></select>
+<small>Caption language</small><select><option>Auto detect</option><option>Hindi</option><option>English</option><option>Hinglish</option></select>
+<small>Video format</small><select><option>9:16 Vertical</option><option>1:1 Square</option></select>
+<p>✓ Find engaging moments &nbsp; ✓ Auto captions<br>✓ Smart vertical crop</p>
+<button class="primary" id="go" disabled onclick="generate()">✦ Generate Shorts</button>
+<div class="status" id="status"></div>
+<p><small>Demo version: this page selects a video locally but does not yet process it. AI processing, secure uploads, accounts and downloads will be connected in the next development stage.</small></p>
+</div>
+<div class="card"><h3>How it will work</h3><p>1. Upload a long video<br>2. AI identifies engaging moments<br>3. Automatically cuts clips and adds captions<br>4. Preview and download your Shorts</p></div>
+</main>
+<script>
+let selectedMode='personal';
+function mode(m){selectedMode=m;document.getElementById('personal').classList.toggle('active',m==='personal');document.getElementById('public').classList.toggle('active',m==='public')}
+function pick(i){let f=i.files[0];document.getElementById('fileName').textContent=f?f.name:'No video selected';document.getElementById('go').disabled=!f}
+function generate(){let s=document.getElementById('status');s.style.display='block';s.textContent='Video selected. AI processing is not connected in this demo yet. Mode: '+selectedMode+'.'}
+</script></body></html>
